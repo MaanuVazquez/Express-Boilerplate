@@ -1,10 +1,17 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    {{{body}}}
-  </body>
+<!doctype html>
+<html class="no-js" lang="es">
+<head>
+	{{> head}}
+</head>
+<body>
+  <!--[if lt IE 8]>
+  <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+  {{> navbar}}
+  <div id="module" class="container-fluid">
+  	{{{body}}}
+  </div>
+  {{> footer}}
+  {{> scripts}}
+</body>
 </html>

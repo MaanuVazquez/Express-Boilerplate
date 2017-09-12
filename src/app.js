@@ -6,34 +6,27 @@ import favicon from 'serve-favicon';
 import logger from 'morgan';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
-import sassMiddleware from 'node-sass-middleware';
+import hbs from './handlebars';
 
-/* routes */
+// Rutas
 import index from './routes/index';
-import users from './routes/users';
 
 const app = express();
 
-// view engine setup
+// Vistas
 app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'hbs');
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+// app.use(favicon(path.join(__dirname, '../public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(sassMiddleware({
-  src: path.join(__dirname, '../public'),
-  dest: path.join(__dirname, '../public'),
-  indentedSyntax: true, // true = .sass and false = .scss
-  sourceMap: true
-}));
+// app.use(passport.initialize());
+// app.use(passport.session());
 app.use(express.static(path.join(__dirname, '../public')));
 
 app.use('/', index);
-app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -53,7 +46,7 @@ app.use((err, req, res, next) => {
   res.render('error');
 });
 
-const port = process.env.NODE_ENV === 'development' ? 80 : 3000;
+const port = process.env.PORT || 3000;
 
 app.set('port', port);
 
